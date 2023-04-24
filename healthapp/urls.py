@@ -1,8 +1,7 @@
 from django.urls import path
 from .api import RegisterApi
 from .views import PatientList, PatientDetail, PatientCreate, PatientUpdate, \
-    AppointmentView, \
-    DoctorsView, PatientDelete, DoctorList, DoctorDetail, DoctorCreate, DoctorUpdate, DoctorDelete, MedicalRecordList, \
+    PatientDelete, DoctorList, DoctorDetail, DoctorCreate, DoctorUpdate, DoctorDelete, MedicalRecordList, \
     MedicalReportDetail, MedicalReportCreate, MedicalReportUpdate, MedicalRecordDelete, PaymentView, PaymentSlipView, \
     AppointmentList, AppointmentDetail, AppointmentCreate, AppointmentUpdate, AppointmentDelete
 

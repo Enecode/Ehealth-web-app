@@ -1,10 +1,8 @@
 from django.contrib.auth.models import User
-# Register serializer
 from rest_framework import serializers
 from .models import Appointment, MedicalRecord, Patient, Doctor, Payment
 
 
-# Register serializer
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -20,7 +18,6 @@ class RegisterSerializer(serializers.ModelSerializer):
         return user
 
 
-# User serializer
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User

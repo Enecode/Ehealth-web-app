@@ -60,6 +60,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.email
 
+
 class Patient(models.Model):
     GENDER_STATUS = (
         ('male', 'Male'),
