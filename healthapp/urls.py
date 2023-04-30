@@ -18,10 +18,10 @@ urlpatterns = [
     path('api/patients/<int:patient_id>/delete/', PatientDelete.as_view()),
 
     path('api/doctors/', DoctorList.as_view()),
-    path('api/doctor-detail/<int:doctor_id>/', DoctorDetail.as_view()),
+    path('api/doctor-detail/<int:doctors_id>/', DoctorDetail.as_view()),
     path('api/doctor/create/', DoctorCreate.as_view()),
     path('api/doctor/<int:doctors_id>/update/', DoctorUpdate.as_view()),
-    path('api/doctor/<int:doctor_id>/delete/', DoctorDelete.as_view()),
+    path('api/doctor/<int:doctors_id>/delete/', DoctorDelete.as_view()),
 
     path('api/medrecord/', MedicalRecordList.as_view()),
     path('api/medrecord-detail/<int:med_record_id>/', MedicalReportDetail.as_view()),

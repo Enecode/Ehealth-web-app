@@ -1,4 +1,6 @@
 from django.http import HttpResponse
+from rest_framework.permissions import IsAuthenticated
+
 from .models import MedicalRecord, Doctor, Patient, Appointment, Payment
 from .serializers import MedicalRecordSerializer, DoctorSerializer, \
     PatientSerializer, PaymentSerializer
@@ -7,11 +9,6 @@ from rest_framework import generics, status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from reportlab.pdfgen import canvas
-
-
-class AppointmentView(generics.CreateAPIView):
-    queryset = Appointment.objects.all()
-    serializer_class = AppointmentSerializer
 
 
 class PatientList(APIView):
@@ -27,6 +24,7 @@ class PatientList(APIView):
 class PatientDetail(APIView):
     queryset = Patient.objects.all()
     serializer_class = PatientSerializer
+    permission_classes = [IsAuthenticated]
 
     def get(self, request, patient_id):
         patient = Patient.objects.get(id=patient_id)
@@ -69,11 +67,6 @@ class PatientDelete(APIView):
         return Response(status=204)
 
 
-class DoctorsView(generics.ListCreateAPIView):
-    queryset = Doctor.objects.all()
-    serializer_class = DoctorSerializer
-
-
 class DoctorList(APIView):
     queryset = Doctor.objects.all()
     serializer_class = DoctorSerializer
@@ -87,9 +80,10 @@ class DoctorList(APIView):
 class DoctorDetail(APIView):
     queryset = Doctor.objects.all()
     serializer_class = DoctorSerializer
+    permission_classes = [IsAuthenticated]
 
-    def get(self, request, patient_id):
-        doctor = Doctor.objects.get(id=patient_id)
+    def get(self, request, doctors_id):
+        doctor = Doctor.objects.get(id=doctors_id)
         serializer = DoctorSerializer(doctor)
         return Response(serializer.data)
 
@@ -110,8 +104,8 @@ class DoctorUpdate(APIView):
     queryset = Doctor.objects.all()
     serializer_class = DoctorSerializer
 
-    def put(self, request, patient_id):
-        doctor = Doctor.objects.get(id=patient_id)
+    def put(self, request, doctors_id):
+        doctor = Doctor.objects.get(id=doctors_id)
         serializer = DoctorSerializer(doctor, data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -122,9 +116,10 @@ class DoctorUpdate(APIView):
 class DoctorDelete(APIView):
     queryset = Doctor.objects.all()
     serializer_class = DoctorSerializer
+    permission_classes = [IsAuthenticated]
 
-    def delete(self, request, patient_id):
-        doctor = Doctor.objects.get(id=patient_id)
+    def delete(self, request, doctors_id):
+        doctor = Doctor.objects.get(id=doctors_id)
         doctor.delete()
         return Response(status=204)
 
@@ -132,6 +127,7 @@ class DoctorDelete(APIView):
 class MedicalRecordList(APIView):
     queryset = MedicalRecord.objects.all()
     serializer_class = MedicalRecordSerializer
+    permission_classes = [IsAuthenticated]
 
     def get(self, request):
         med_record = MedicalRecord.objects.all()
@@ -142,9 +138,10 @@ class MedicalRecordList(APIView):
 class MedicalReportDetail(APIView):
     queryset = MedicalRecord.objects.all()
     serializer_class = MedicalRecordSerializer
+    permission_classes = [IsAuthenticated]
 
-    def get(self, request, patient_id):
-        med_record = MedicalRecord.objects.get(id=patient_id)
+    def get(self, request, doctor_id):
+        med_record = MedicalRecord.objects.get(id=doctor_id)
         serializer = MedicalRecordSerializer(med_record)
         return Response(serializer.data)
 
@@ -152,6 +149,7 @@ class MedicalReportDetail(APIView):
 class MedicalReportCreate(APIView):
     queryset = MedicalRecord.objects.all()
     serializer_class = MedicalRecordSerializer
+    permission_classes = [IsAuthenticated]
 
     def post(self, request):
         serializer = MedicalRecordSerializer(data=request.data)
@@ -164,9 +162,10 @@ class MedicalReportCreate(APIView):
 class MedicalReportUpdate(APIView):
     queryset = MedicalRecord.objects.all()
     serializer_class = MedicalRecordSerializer
+    permission_classes = [IsAuthenticated]
 
-    def put(self, request, patient_id):
-        med_record = MedicalRecord.objects.get(id=patient_id)
+    def put(self, request, med_record_id):
+        med_record = MedicalRecord.objects.get(id=med_record_id)
         serializer = MedicalRecordSerializer(med_record, data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -177,9 +176,10 @@ class MedicalReportUpdate(APIView):
 class MedicalRecordDelete(APIView):
     queryset = MedicalRecord.objects.all()
     serializer_class = MedicalRecordSerializer
+    permission_classes = [IsAuthenticated]
 
-    def delete(self, request, patient_id):
-        med_record = MedicalRecord.objects.get(id=patient_id)
+    def delete(self, request, med_record_id):
+        med_record = MedicalRecord.objects.get(id=med_record_id)
         med_record.delete()
         return Response(status=204)
 
