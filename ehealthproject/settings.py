@@ -34,6 +34,7 @@ SECRET_KEY = 'new_secret'
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
+# SECURE_SSL_REDIRECT = True
 # ALLOWED_HOSTS = ['https://majestic-douhua-6bef09.netlify.app', ]
 # Application definition
 
