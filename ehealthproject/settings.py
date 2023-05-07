@@ -198,3 +198,37 @@ if DEBUG:
     ]
 else:
     STATIC_ROOT = BASE_DIR / "static"
+
+# Allow all origins
+CORS_ALLOW_ALL_ORIGINS = True
+
+# Allow specific origins
+CORS_ALLOWED_ORIGINS = [
+   'http://localhost:3000',
+]
+
+# Allow specific methods
+CORS_ALLOWED_METHODS = [
+   'DELETE',
+   'GET',
+   'OPTIONS',
+   'PATCH',
+   'POST',
+   'PUT',
+]
+
+# Allow specific headers
+CORS_ALLOWED_HEADERS = [
+   'accept',
+   'accept-encoding',
+   'authorization',
+   'content-type',
+   'dnt',
+   'origin',
+   'user-agent',
+   'x-csrftoken',
+   'x-requested-with',
+]
+
+# Allow cookies to be sent across domains
+CORS_ALLOW_CREDENTIALS = True
