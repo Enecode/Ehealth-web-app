@@ -11,7 +11,7 @@ urlpatterns = [
     # path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/register/', RegisterApi.as_view()),
 
-    path('api/patients/', PatientList.as_view()),
+    path('api/patients/', PatientList),
     path('api/patients-detail/<int:patient_id>/', PatientDetail.as_view()),
     path('api/patients/create/', PatientCreate.as_view()),
     path('api/patients/<int:patient_id>/update/', PatientUpdate.as_view()),

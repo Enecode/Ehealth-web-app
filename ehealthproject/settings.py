@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
+import os
 # import os
 import secrets
 from pathlib import Path
@@ -44,8 +45,7 @@ DEBUG = False
 # DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-# SECURE_SSL_REDIRECT = True
-# ALLOWED_HOSTS = ['https://majestic-douhua-6bef09.netlify.app', ]
+SECURE_SSL_REDIRECT = True
 # Application definition
 
 INSTALLED_APPS = [
@@ -64,7 +64,6 @@ INSTALLED_APPS = [
 CORS_ALLOWED_ORIGINS = [
     'https://localhost:8001',
     'https://localhost:8000',
-    'https://imperfect-bite-pipeops-852f7cf2.pipeops.app',
 
 ]
 
@@ -108,23 +107,23 @@ WSGI_APPLICATION = 'ehealthproject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': os.getenv("DB_NAME"),
-#         "USER": os.getenv("DB_USER"),
-#         "PASSWORD": os.getenv("DB_PASSWORD"),
-#         "HOST": os.getenv("DB_HOST"),
-#         "PORT": os.getenv("DB_PORT"),
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.getenv("DB_NAME"),
+        "USER": os.getenv("DB_USER"),
+        "PASSWORD": os.getenv("DB_PASSWORD"),
+        "HOST": os.getenv("DB_HOST"),
+        "PORT": os.getenv("DB_PORT"),
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -167,7 +166,7 @@ PAYSTACK_PUBLIC_KEY = 'your_paystack_public_key'
 PAYSTACK_PAYMENT_REDIRECT_URL = 'http://localhost:3000/payment-successful'
 
 # JWT settings
-from datetime import timedelta
+
 
 SIMPLJWT_TOKEN_LIFETIME = timedelta(hours=1)
 SIMPLJWT_REFRESH_LIFETIME = timedelta(days=7)
@@ -207,9 +206,6 @@ else:
 CORS_ALLOW_ALL_ORIGINS = True
 
 # Allow specific origins
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000',
-]
 
 # Allow specific methods
 CORS_ALLOWED_METHODS = [

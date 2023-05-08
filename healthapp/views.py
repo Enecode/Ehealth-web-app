@@ -1,5 +1,6 @@
 from django.http import HttpResponse
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated, AllowAny
 
 from .models import MedicalRecord, Doctor, Patient, Appointment, Payment
 from .serializers import MedicalRecordSerializer, DoctorSerializer, \
@@ -11,6 +12,8 @@ from rest_framework.response import Response
 from reportlab.pdfgen import canvas
 
 
+@api_view(['GET'])
+@permission_classes([AllowAny])
 class PatientList(APIView):
     queryset = Patient.objects.all()
     serializer_class = PatientSerializer
@@ -19,7 +22,6 @@ class PatientList(APIView):
         patients = Patient.objects.all()
         serializer = PatientSerializer(patients, many=True)
         return Response(serializer.data)
-
 
 class PatientDetail(APIView):
     queryset = Patient.objects.all()
