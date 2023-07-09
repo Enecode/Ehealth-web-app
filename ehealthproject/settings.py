@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import secrets
 from datetime import timedelta
 from pathlib import Path
+from pathlib import Path 
 
 import environ
 
@@ -182,11 +183,14 @@ STATIC_URL = 'static/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-if DEBUG:
-    STATICFILES_DIRS = [
-        BASE_DIR / "static",
-    ]
-else:
-    STATIC_ROOT = BASE_DIR / "static"
+# DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# if DEBUG:
 
+
+BASE_DIR = Path(__file__).resolve().parent
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
+STATIC_ROOT = BASE_DIR / "static"
