@@ -6,11 +6,7 @@ from .views import PatientList, PatientDetail, PatientCreate, PatientUpdate, \
     AppointmentList, AppointmentDetail, AppointmentCreate, AppointmentUpdate, AppointmentDelete
 
 urlpatterns = [
-    # ...
-    # path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    # path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/register/', RegisterApi.as_view()),
-
     path('api/patients/', PatientList),
     path('api/patients-detail/<int:patient_id>/', PatientDetail.as_view()),
     path('api/patients/create/', PatientCreate.as_view()),

@@ -11,8 +11,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 # import os
 import secrets
-from pathlib import Path
 from datetime import timedelta
+from pathlib import Path
+
 import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,7 +26,7 @@ new_secret = ''.join(secrets.choice(chars) for i in range(50))
 
 SECRET_KEY = 'new_secret'
 
-DEBUG = False
+DEBUG = True
 
 
 # Quick-start development settings - unsuitable for production
@@ -100,12 +101,18 @@ WSGI_APPLICATION = 'ehealthproject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'ehealth',
+        'USER': 'ehealth',
+        'PASSWORD': 'ehealth',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -183,33 +190,3 @@ if DEBUG:
 else:
     STATIC_ROOT = BASE_DIR / "static"
 
-# Allow all origins
-# CORS_ALLOW_ALL_ORIGINS = True
-
-# Allow specific origins
-
-# Allow specific methods
-# CORS_ALLOWED_METHODS = [
-#     'DELETE',
-#     'GET',
-#     'OPTIONS',
-#     'PATCH',
-#     'POST',
-#     'PUT',
-# ]
-
-# Allow specific headers
-# CORS_ALLOWED_HEADERS = [
-#     'accept',
-#     'accept-encoding',
-#     'authorization',
-#     'content-type',
-#     'dnt',
-#     'origin',
-#     'user-agent',
-#     'x-csrftoken',
-#     'x-requested-with',
-# ]
-
-# Allow cookies to be sent across domains
-# CORS_ALLOW_CREDENTIALS = True
